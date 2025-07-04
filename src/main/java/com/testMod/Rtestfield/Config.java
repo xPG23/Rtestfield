@@ -1,4 +1,4 @@
-package com.example.Rtestfield;
+package com.testMod.Rtestfield;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
