@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " II",
+    " SI",
+    " S "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:cobblestone"
+    },
+    "S": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "rtestfield:dava_axe"
+  }
+}
