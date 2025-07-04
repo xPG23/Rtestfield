@@ -7,6 +7,6 @@ import net.minecraft.world.item.Tiers;
 public class TestSword extends SwordItem {
 
     public TestSword() {
-        super(Tiers.IRON,3,-2.4f,new Properties());
+        super(Tiers.NETHERITE,10,-2.4f,new Properties());
     }
 }
