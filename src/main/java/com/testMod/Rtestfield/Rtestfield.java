@@ -1,4 +1,4 @@
-package com.example.Rtestfield;
+package com.testMod.Rtestfield;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -32,18 +32,18 @@ import org.slf4j.Logger;
 @Mod(Rtestfield.MODID)
 public class Rtestfield
 {
-    // Define mod id in a common place for everything to reference
+    // Aqui o atributo recebe o id do mod
     public static final String MODID = "rtestfield";
-    // Directly reference a slf4j logger
+    // Atributo referência que recebe o objeto logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
+    // Criação de um 'DeferredRegister" um container de registros do tipo escolhido (referente ao objeto do minecraft).
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
+    // Criação de um 'DeferredRegister" um container de registros do tipo escolhido (referente ao objeto do minecraft).
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-    // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
+    // Criação de um 'DeferredRegister" um container de registros do tipo escolhido (referente ao objeto do minecraft).
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
+    // Aqui criamos de fato um atributo do tipo do registro do objeto, esse guarda o registro do objeto para podermos acessar esse futuramente, enquanto já registramos no container de reg
     public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE)));
     // Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
@@ -53,12 +53,7 @@ public class Rtestfield
             .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
     // Creates a creative tab with the id "examplemod:example_tab" for the example item, that is placed after the combat tab
-    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
-            .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            }).build());
+
 
     public Rtestfield(FMLJavaModLoadingContext context)
     {
@@ -67,6 +62,7 @@ public class Rtestfield
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        ItemInit.register(modEventBus);
         // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
